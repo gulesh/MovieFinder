@@ -69,5 +69,19 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
        }
        
 
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     
+        
+        //find the selected movie and pass the moviee to details view controller
+        let cell = sender as! UITableViewCell
+        let indexPath = movieTable.indexPath(for: cell)!
+        
+        let movie = movies [indexPath.row]
+    
+    //passing the movie
+        let detailsViewController = segue.destination as! MovieDetailsViewController
+        detailsViewController.movie = movie
+        
+        movieTable.deselectRow(at: indexPath, animated: true)
+    }
 }
